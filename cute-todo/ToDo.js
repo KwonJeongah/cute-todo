@@ -1,11 +1,14 @@
 import React, {Component} from "react"
 import {View, Text, TouchableOpacity, StyleSheet, Dimensions, TextInput} from "react-native";
+import PropTypes from "prop-types";
 
 const { width, height} = Dimensions.get("window");
 
 export default class ToDo extends Component{
+  static propTypes ={
+    text: PropTypes.string.isRequired,isCompleted: PropTypes.bool.isRequired
+  }
     state = {
-      isCompleted: false,
       isEditing: false,
       todoValue: ""    
     };
@@ -132,7 +135,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     width: width / 2,
-    justifyContent: "space-between"
   },
   actions: {
     flexDirection: "row"
