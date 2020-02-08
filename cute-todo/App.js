@@ -37,7 +37,9 @@ export default class App extends React.Component {
              onSubmitEditing = {this._addToDo}
            />
            <ScrollView contentContainerStyle={styles.toDos}>
-             {Object.values(toDos).map(toDo => <ToDo key={toDo.id} {...toDo}/>)}
+             {Object.values(toDos).map(toDo => (
+                <ToDo key={toDo.id} {...toDo} deleteToDo={this._deleteToDo} />
+             ))}
            </ScrollView>
          </View>
       </View>
@@ -77,6 +79,17 @@ export default class App extends React.Component {
         return { ...newState };
       });
     }
+  };
+  _deleteToDo= id => {
+    this.setState(prevState => {
+      const toDos = prevState.toDos;
+      delete toDos[id];
+      const newState={
+        ...prevState,
+        ...toDos
+      };
+      return {...newState};
+    });
   };
 }
 
